@@ -10,11 +10,37 @@
 4. 제일 자주쓰인 단어를 출력한다.
 '''
 
-paragraph = ["Bob hit a ball, the hit BALL flew far after it was hit."]
+#파이썬에서 제공하는 re(Regular Expression)의 sub(Substitiution) 함수를 이용할거임
+import re
+
+paragraph = "Bob hit a ball, the hit BALL flew far after it was hit."
 banned = ["hit"]
 
-a = 0
-#배열을 for문 돌리면 안에 있는 인자들을 하나씩 체크할 수 있다.
-for i in paragraph:
-    print(i.split()[a])
-    a += 1
+#특수 문자를 제거하는 것은 import re 해서 쓰면 됨 
+#아래는 re.sub의 형식임
+clean_a = re.sub(pattern = '[^\w\s]' , repl='', string=paragraph) #쓸모없는 특수문자들을 전부 제거
+transform_a = clean_a.lower() #일괄적으로 소문자처리
+list_ca = transform_a.split() #쓸데없는 것들 삭제한걸 리스트로 쪼갬
+
+remove_count = list_ca.count(banned[0])
+for i in range(remove_count):
+    if list_ca.count(banned[0]) > 0:
+        list_ca.remove(banned[0]) #금지한 단어를 리스트에서 삭제시키고,
+print(list_ca)
+
+#리스트안에 카운트 하는 코드를 짜줄 차례
+
+
+for i in range(len(list_ca)):
+    count_word = list_ca[0]
+    print(count_word, end=' : ')
+    print(list_ca.count(count_word))
+    list_ca.remove(count_word)
+    if list_ca.count(count_word) > 0:
+        list_ca.remove(count_word)
+        print(list_ca)
+    else:
+        print(list_ca)
+
+    if len(list_ca) == 0:
+        break
