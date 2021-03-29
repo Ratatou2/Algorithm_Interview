@@ -33,6 +33,8 @@ def groupAnagrams(strs):
     - 한마디로 defaultdict는 anagrams라는 딕셔너리의 초기값을 list로 지정한다는 것이다.
         
     defaultdict()는 딕셔너리를 만드는 dict클래스의 서브 클래스이다.
+    +a 원래 딕셔너리는 존재하지 않는 키를 삽입하려하면 에러가 난다
+    그런데 defaultdict()를 해주면 항상 디폴트를 생성해주기 때문에, 매번 키 존재 여부를 체크하지 않고 비교 구문을 생략해 간결하게 구성할 수 있다.
     '''
     print("anagram's type? : ", type(anagrams))
     print('anagram : ', anagrams)
@@ -62,6 +64,16 @@ def groupAnagrams(strs):
         - 근데 저렇게 그룹핑할 수 있는 이유는 anagrams을 생성할때 리스트를 초기값으로 받는 딕셔너리로 생성했기 때문이다..
         - 그렇기 때문에 정렬한 aet라는 단어를 키로 잡고, 정렬되기 전의 단어를 값으로 잡는 것이다.
         - 그렇게하면 같은 키(ex. aet)를 가지는 애들은 한군데에 모여 값이 될 것이고, 우리는 나중에 같은 키에의해 모인 값들만 추출하면 된다 
+    
+    +a sorted()라는 함수 외에도 리스트 자료형에 sort() 메소드를 따로 제공한다.
+    둘의 가장 큰 차이점은 sort()는 리스트 자체를 제자리 정렬하며 None을 리턴한다는 것,
+    sorted()는 정렬 결과를 별도로 리턴한다는 것이 다르다.
+    
+    +a sorted()는 key=옵션을 지정해 정렬을 위한 키 또는 함수를 별도 지정 가능
+    ex.
+        str_list = ['ccc', 'aaaa', 'd', 'bb']
+        sorted(str_list, key=len) #키의 길이순으로 정렬하라는 뜻
+        >>>['d', 'bb', 'ccc', 'aaaa'] 
     '''
     return anagrams.values()
     #그리고 같은 키에 모인 값들만 출력하기 위해서 위 함수의 결과를 anagrams의 values(값)로 return 하는 것이다.
