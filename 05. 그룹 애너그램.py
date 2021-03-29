@@ -30,7 +30,8 @@ def groupAnagrams(strs):
     - 그러면 단순하게 아래와 같이 적을 수 있다.
         - anagrams = defaultdict(list)
     - 또한 defualitdict(list)라는 것은 인자로 주어진 list라는 객체의 기본값을 딕셔너리의 초깃값으로 지정한다는 것이다.
-    - 한마디로 defaultdict는 list를 anagrams라는 딕셔너리의 초기값으로 지정한다는 것이다.
+    - 한마디로 defaultdict는 anagrams라는 딕셔너리의 초기값을 list로 지정한다는 것이다.
+        
     defaultdict()는 딕셔너리를 만드는 dict클래스의 서브 클래스이다.
     '''
     print("anagram's type? : ", type(anagrams))
@@ -58,8 +59,12 @@ def groupAnagrams(strs):
                     - sorted(word) => ['a', 'e', 't']
                     - ''.join(sorted(word)) => aet
         - 그다음에 anagrma에 append함
+        - 근데 저렇게 그룹핑할 수 있는 이유는 anagrams을 생성할때 리스트를 초기값으로 받는 딕셔너리로 생성했기 때문이다..
+        - 그렇기 때문에 정렬한 aet라는 단어를 키로 잡고, 정렬되기 전의 단어를 값으로 잡는 것이다.
+        - 그렇게하면 같은 키(ex. aet)를 가지는 애들은 한군데에 모여 값이 될 것이고, 우리는 나중에 같은 키에의해 모인 값들만 추출하면 된다 
     '''
     return anagrams.values()
+    #그리고 같은 키에 모인 값들만 출력하기 위해서 위 함수의 결과를 anagrams의 values(값)로 return 하는 것이다.
 
 
 strs_list = ["eat","tea","tan","ate","nat","bat"]
