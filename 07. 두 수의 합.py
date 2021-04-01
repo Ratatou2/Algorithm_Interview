@@ -4,8 +4,13 @@ a = [2, 7 ,11, 15]
 result_list = []
 for i in range(len(a)):
     first = 1
-    for first in range(len(a)-1):
+    for first in range(i+1, len(a)):
+    # 심지어 len(a)-을 해버리면 맨 마지막인 15까진 순서가 가지도 않는다
+    # 그나마 앞선 for문의 영향으로 덧셈값이 나오는 것일뿐_수정필요
+    # 따라서 두번째 for문의 범위를 range(len(a)-1) -> range(i+1, len(a)): 로 수정한다
+    # 그렇게 되면 자기 자신을 더하는 과정 + 이전 요소들까지 더하는 과정은 제거됨
         result = a[i] + a[first]
+        print(result)
         if a[first] != a[i]:
             if result not in result_list:
                 result_list.append(result)
