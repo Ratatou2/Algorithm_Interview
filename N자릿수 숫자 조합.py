@@ -72,3 +72,25 @@ print(pick.index(5)) 를 하면
 5라는 요소가 몇번째 요소(= index가 몇이냐)라는 의미
 -> 당연히 해답은 4번째(리스트는 0번부터 세니까)        
 '''
+
+''' [원본코드] 
+def combination(arr, Num_Of_Dig):
+    arr = sorted(arr)
+    def recursive(list_to_add):
+        if len(list_to_add) == Num_Of_Dig:
+            print(list_to_add)
+            return
+
+        start = arr.index(list_to_add[-1]) + 1 if list_to_add else 0
+        for i in range(start, len(arr)):
+            list_to_add.append(arr[i])
+            recursive(list_to_add)
+            list_to_add.pop()
+    recursive([])
+
+
+r = 4
+#r = int(input())
+for i in range(1, r+1):
+    combination([1, 2, 3, 4, 5, 6, 7, 8, 9], i)
+'''
