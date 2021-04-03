@@ -55,7 +55,7 @@ def combination(arr, Num_Of_Dig):
             print("list_to_add after pop", list_to_add)
         print("<for end>\n")
 
-    recursive([]) # 현재 recursive는 (list_to_add)의 len(길이)로 움직이니까 리스트로 돌려줘야함
+    recursive([]) # 수정 : 현재 resucrsive에는 빈 리스트를 입력값으로 줄 것이라서 빈 리스트를 그냥 써넣은거임 
     print("<combination end>")
 
 
