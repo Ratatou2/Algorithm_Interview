@@ -5,7 +5,6 @@ def comb(arr, spot):
         if len(llist) == spot:
             llist = map(str, llist)
             ans.append(''.join(llist))
-
             return
 
         start = arr.index(llist[-1]) + 1 if llist else 0
