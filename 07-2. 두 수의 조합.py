@@ -8,8 +8,11 @@ def twoSum(nums, target):
 
     print(nums_map)
     print(nums_map[9])
+    count = 0
     for i , num in enumerate(nums):
+        count += 1
         if target - num in nums_map and i != nums_map[target - num]:
+            print(count)
             return nums.index(num), nums_map[target - num] # (*)
 
 print(twoSum([1, 3, 6, 9, 13, 17], 15))
