@@ -2,6 +2,7 @@
 # 포인터 2개 써가지고 푸는 방식
 # 다만 원본 코드는 항상 sort 되어있는 상황을 가정하고 실행함
 # 그래서 함수 실행 첫줄에 sort하는 코드를 넣어줌
+# but, 이 방식이 별로 안좋은 이유는 sort해버리면 기존의 index는 무시되기 때문에 출제자가 의도한 답을 도출하기 어렵다(주의할 점)
 def twoSum(nums: list, target: int):
     nums.sort()
     left, right = 0, len(nums) - 1 # right에 -1 을 한 이유는 인덱스와 right의 수치를 맞춰주기 위해서
