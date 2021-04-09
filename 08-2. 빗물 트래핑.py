@@ -24,6 +24,7 @@ def traping(land_heights:list):
 
             # 이전과의 차이만큼 물높이를 채움
             ''' 이 파트 아직 다 이해 못했음 '''
+            # layer = 길이(가로), waters = 높이(세로)
             layer = i - stack[-1] - 1
             waters = min(land_heights[i], land_heights[stack[-1]]) - land_heights[top]
             fill += layer * waters
