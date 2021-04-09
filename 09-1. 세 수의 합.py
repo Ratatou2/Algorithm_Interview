@@ -24,7 +24,7 @@ def thrSum(nums:list):
                     results.append((nums[i], nums[j], nums[k]))
 
     return results
-
-nums = [-1, 0, 1, 2, -1, -4]
+nums = [-3, -1, 0, 4, 9]
+#nums = [-1, 0, 1, 2, -1, -4]
 
 print(thrSum(nums))
