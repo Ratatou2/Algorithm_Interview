@@ -5,16 +5,23 @@
 # 설명 n = 2, 최대 합은 4
 # min(1,2) + min(3,4) = 4
 
+''' 문제 해설
+- 문제 해설인 즉, 페어의 min()을 합산했을 때 최대 를 만드는 것은 결국 각각의 min이 최대로 커야한다는 소리
+- 그럼 이것도 sort해서 정렬시키고 앞에서부터 or 뒤에서 부터 페어로 묶으면 최대 min()을 유지할 수 있다
+- 걍 페어로 묶어서 최솟값을 낼 건데 그 최솟갑들을 더했을 때 가장 큰 수가 나오는 경우를 만들란 소리
+'''
 def arraypairSum(nums:list):
     sum = 0
     pair = []
-    nums.sort()
+    nums.sort() # 이번 코드에서 제일 중요한 정렬, 정렬을 해놔야 어떻게 묶든 크게 나온다
 
+    # 반복문의 범위를 리스트로 한정해버리면 이 코드의 i는 매번 nums에 있는 것을 한개씩 꺼내오는 것이다.
     for n in nums:
-        pair.append(n)
-        if len(pair) == 2:
-            sum += min(pair)
-            pair = []
-
+        pair.append(n)          # pair라는 빈 리스트에 n을 추가함
+        if len(pair) == 2:      # 한개의 pair의 길이가 2가 되면(한쌍의 pair가 완성됨)
+            sum += min(pair)    # 이 pair의 최솟값을 sum에 더해두고
+            pair = []           # pair를 초기화, 그리고 nums의 요소들이 다 떨어질 때까지 반복
 
     return sum
+
+print(arraypairSum([1,4,2,3]))
