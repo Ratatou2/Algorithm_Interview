@@ -17,7 +17,7 @@ def isPalindrome(head):
 
     while fast and fast.next:
         fast = fast.next.next
-        rev, rev.next, slow = slow, rev, slow.next
+        rev, rev.next, slow = slow, rev, slow.next # 한줄로 처리해야 딱 끝낼 수 있음
     if fast:
         slow = slow.next
 
