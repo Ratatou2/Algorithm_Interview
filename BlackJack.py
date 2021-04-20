@@ -13,7 +13,7 @@ deck = ['1', '1', '1', '1', '2', '2', '2', '2', '3', '3', '3', '3', '4', '4', '4
         'A', 'A', 'A', 'A']
 
 myMoney = 1000
-count_card= 51 # 총 카드 갯수
+count_card= 51 # 총 카드 갯수(0~51 = 52장)
 
 def checkCard(define):
     if define == 'J':
@@ -31,10 +31,38 @@ def checkCard(define):
             return 11
 
     else: return int(define)
-    
+
+def forDealerTempCheckCard(define):
+    if define == 'J':
+        return 10
+    elif define == 'Q':
+        return 10
+    elif define == 'K':
+        return 10
+    elif define == 'A':
+        return 'A'
+
+    else: return int(define)
+
 
 # 딜러와 플레이어는 서로 한장씩 카드를 번갈아 가며 뽑아야 공평하다
 def playerAndDealer():
+    def dealercheckCard(define, total):
+        if define == 'J':
+            return 10
+        elif define == 'Q':
+            return 10
+        elif define == 'K':
+            return 10
+        elif define == 'A':
+            if total == 10:
+                return 10
+            elif total == 11:
+                return 10
+            elif total >= 12:
+                return 1
+
+        else: return int(define)
 
     #betMoney = input()
     global myMoney
@@ -44,7 +72,6 @@ def playerAndDealer():
         D_card = deck[random.randint(0, count_card)]
         deck.remove(D_card)
         return D_card
-
     def playerDraw():
         P_card = deck[random.randint(0, count_card)]
         deck.remove(P_card)
@@ -68,10 +95,15 @@ def playerAndDealer():
     count_card -= 1
     print("두번째 카드 >>>", P_second)
 
-    # 딜러의 총합
-    D_check_card1 = checkCard(D_first)
-    D_check_card2 = checkCard(D_second)
+    # 딜러의 총합을 구하는 지점, 이때 A를 처리할 경우의 수를 따로 짜줘야할 듯함
+    D_temp1 = forDealerTempCheckCard(D_first)
+    D_temp2 = forDealerTempCheckCard(D_second)
+    if type(D_temp1) != str and type(D_temp2) != str:
+        D_temp_totalSum = D_temp1 + D_temp2
+        D_check_card1 = dealercheckCard(D_first, D_temp_totalSum)
+        D_check_card2 = dealercheckCard(D_second, D_temp_totalSum)
     D_total_Sum = D_check_card1 + D_check_card2
+
 
     # 딜러는 자신의  합을 미리 보고 더 뽑아도 됨
     # 딜러의 조건부 세번째 카드
@@ -102,10 +134,10 @@ def playerAndDealer():
             pass
 
         if P_total_Sum == 21:
-            print("<System> 블랙잭입니다!")
+            print("<System> 블랙잭입니다!\n")
             break
         elif P_total_Sum > 22:
-            print("<System> 플레이어 버스트")
+            print("<System> 플레이어 버스트\n")
             break
 
         print("<System> 더 뽑으시겠습니까?\n (1) 예 / (2) 아니오")
@@ -132,22 +164,22 @@ def playerAndDealer():
             myMoney -= 100
 
         else:
-            print("<System> 딜러 버스트, 플레이어의 승리")
+            print("<System> 딜러 버스트, 플레이어의 승리\n")
             myMoney += 100
     elif D_total_Sum == P_total_Sum:
-        print("<System> 무승부, 돈을 돌려받습니다")
+        print("<System> 무승부, 돈을 돌려받습니다\n")
     elif D_total_Sum > P_total_Sum:
         print("<System> 딜러의 승리")
         myMoney -= 100
     elif D_total_Sum < P_total_Sum:
         if P_total_Sum < 22:
-            print("<System> 플레이어의 승리")
+            print("<System> 플레이어의 승리\n")
             myMoney += 100
         else:
-            print("<System> 버스트, 패배하였습니다.")
+            print("<System> 버스트, 패배하였습니다.\n")
             myMoney -= 100
 
-    print("현재 나의 돈 >>>", myMoney, "\n")
+    print("※현재 나의 돈 >>>", myMoney, "\n")
     print("-------------------------------")
 
 
