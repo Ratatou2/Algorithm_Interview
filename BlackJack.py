@@ -14,10 +14,12 @@ deck = ['1', '1', '1', '1', '2', '2', '2', '2', '3', '3', '3', '3', '4', '4', '4
 
 myMoney = 1000
 count_card = 51
+
 # 딜러가 A를 갖는 경우의 수 모두를 계산해주기 위해 총합 계산하는 결과값은 2가지를 줌
 D_total_Sum1ver = 0
 D_total_Sum11ver = 0
 finaldealerDeck = []
+
 # 플레이어 덱 총합 변환 코드
 def checkCard(define):
     if define == 'J':
@@ -28,7 +30,20 @@ def checkCard(define):
         return 10
     elif define == 'A':
         print("A를 1과 11 둘중 하나로 사용할 수 있습니다\n 어느쪽으로 사용하시겠습니까?")
-        ans = int(input())
+        while True:
+            try:
+                ans = int(input())
+
+                if ans < 0:
+                    print("입력한 값이 양수가 아닙니다.")
+
+                else:
+                    print(ans)
+                    break
+
+            except ValueError:
+                print("A를 1과 11 둘중 하나로 사용할 수 있습니다\n 어느쪽으로 사용하시겠습니까?")
+
         if ans == 1:
             return 1
         else:
@@ -47,7 +62,18 @@ def playerAndDealer():
     dealerDeck = []
     finaldealerDeck = []
 
-    betMoney = int(input())
+    while True:
+        try:
+            betMoney = int(input())
+
+            if betMoney < 0:
+                print("입력한 값이 양수가 아닙니다.")
+            else:
+                print(betMoney)
+                break;
+
+        except ValueError:
+            print("입력한 값이 없거나 정수가 아닙니다. 정확한 베팅 금액을 입력하세요")
 
 
     def dealerDraw():
@@ -76,17 +102,34 @@ def playerAndDealer():
     playerDraw()
     dealerDraw()
 
-    print("※현재 플레이어 카드 >>>", playerDeck)
-    print("※현재 딜러의 첫번째 카드 >>>", dealerDeck[0], '\n')
-    print("※현재 딜러의 두번째 카드 >>>", dealerDeck[1], '\n')
+    print("※ 현재 플레이어 카드 >>>", playerDeck)
+    print("※ 현재 딜러의 첫번째 카드 >>>", dealerDeck[0], '\n')
 
     # 블랙잭 실제 플레이 영상을 참고했는데 플레이어의 카드를 보고나서 플레이어가 더 먹을지 말지 선택을 함
     # 딜러가 추가 드로우하는 타이밍은 따로 있었음
     # 또한 딜러의 카드 한장을 볼 수 있음
     # 플레이어 추가 드로우 while문
     while True:
+        print("___________________________")
         print("<System> 더 뽑으시겠습니까?\n (1) 예 / (2) 아니오")
-        ans = int(input())
+
+        while True:
+            try:
+                ans = int(input())
+
+                if ans < 0:
+                    print("1과 2 둘중 하나를 골라주세요")
+                else:
+                    print(ans)
+                    break
+
+            except ValueError:
+                print("입력한 값이 없거나 제대로 된 값이 아닙니다")
+                print("<System> 더 뽑으시겠습니까?\n (1) 예 / (2) 아니오")
+
+
+
+        print("---------------------------")
 
         if ans == 1:
             playerDraw()
@@ -94,7 +137,6 @@ def playerAndDealer():
 
         elif ans == 2: break
 
-    blackjack = 0
     # 플레이어 점수 변환
     playerTotal = 0
     for card in playerDeck:
@@ -105,7 +147,7 @@ def playerAndDealer():
 
     if playerTotal == 21:
         print("<System> 블랙잭입니다!\n") # 블랙잭이면 1.5배를 바음
-        blackjack = 1
+
         betMoney = int(betMoney * 1.5)
 
     elif playerTotal > 22:
@@ -142,15 +184,12 @@ def playerAndDealer():
             D_total_Sum11ver += trnas
             return [D_total_Sum1ver, D_total_Sum11ver]
 
-    print("딜러 카드 체크", dealerDeck)
+
     for card in dealerDeck:
         checkCardForDealer(card)
 
 
     tempList = [D_total_Sum1ver, D_total_Sum11ver]
-
-    print("더해진 값 체크", tempList)
-    # 딜러 추가 드로우
 
     for score in tempList:
         break
@@ -167,7 +206,6 @@ def playerAndDealer():
         elif score < 17:
 
             D_card = deck[random.randint(0, count_card)]
-            print(D_card)
             deck.remove(D_card)
             finaldealerDeck.append(D_card)
             count_card -= 1
@@ -186,12 +224,10 @@ def playerAndDealer():
             #     sec = transToScore[1]
             #     break
             if transToScore[0] >= 17:
-                print(transToScore)
                 fir = transToScore[0]
                 sec = transToScore[1]
                 break
             elif 17 <= transToScore[1] <= 21:
-                print(transToScore)
                 fir = transToScore[0]
                 sec = transToScore[1]
                 break
@@ -202,18 +238,18 @@ def playerAndDealer():
     dealerTotal = 0
     print("딜러의 패 >>>", finaldealerDeck)
     if fir > 21:
-        print("딜러의 총합 >>>", fir)
+        print("딜러의 총합 >>>", fir, '\n')
         dealerTotal = fir
     elif fir <= 21:
         if fir == sec:
-            print("딜러의 총합 >>>", fir)
+            print("딜러의 총합 >>>", fir, '\n')
             dealerTotal = fir
         else:
             if sec > 21:
-                print("딜러의 총합 >>>", fir)
+                print("딜러의 총합 >>>", fir, '\n')
                 dealerTotal = fir
             else:
-                print("딜러의 총합 >>>", sec)
+                print("딜러의 총합 >>>", sec, '\n')
                 dealerTotal = sec
 
 
@@ -235,14 +271,16 @@ def playerAndDealer():
 
     print()
     print("현재 잔액 >>>", myMoney)
-    print(count_card)
+    print("________________________\n")
 
 
 #플레이 시작
 while True:
-    print("<System> 엔터를 치면 새 게임을 시작합니다")
+    print("<System> 엔터를 치면 게임을 시작합니다")
     input()
     playerAndDealer()
+
+    # 매 게임마다 덱을 리셋
     count_card = 51
     deck = ['1', '1', '1', '1', '2', '2', '2', '2', '3', '3', '3', '3', '4', '4', '4', '4',
             '5', '5', '5', '5', '6', '6', '6', '6', '7', '7', '7', '7', '8', '8', '8', '8',
