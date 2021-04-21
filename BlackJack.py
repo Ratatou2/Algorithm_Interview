@@ -275,11 +275,13 @@ def playerAndDealer():
 
 
 #플레이 시작
+playCount = 0
 while True:
+    print("[현재 플레이한 횟수는", playCount, "회 입니다.]")
     print("<System> 엔터를 치면 게임을 시작합니다")
     input()
     playerAndDealer()
-
+    playCount += 1
     # 매 게임마다 덱을 리셋
     count_card = 51
     deck = ['1', '1', '1', '1', '2', '2', '2', '2', '3', '3', '3', '3', '4', '4', '4', '4',
