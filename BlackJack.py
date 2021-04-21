@@ -20,6 +20,19 @@ D_total_Sum1ver = 0
 D_total_Sum11ver = 0
 finaldealerDeck = []
 
+def gameRule():
+    print("「made by JH」\n"
+          "개선사항 전달은 ratatou.duleum@gmail.com으로 부탁드립니다\n\n"
+          "<< BlackJack(블랙잭) 게임룰 설명 >>\n"
+          "1) 블랙잭은 카드를 뽑아서 총합을 21을 만드는 게임입니다\n"
+          "2) J, Q, K는 10으로 계산하며, A는 1또는 11로 계산할수 있습니다.\n"
+          "3) 카드는 원하는만큼 뽑을 수 있습니다(다만 21을 넘어가면 버스트)\n"
+          "4) 총합 21은 '블랙잭'으로, 베팅한 금액의 1.5배를 받습니다\n"
+          "5) 딜러와 같은 점수라면 무승부로 베팅한 금액을 다시 돌려받습니다\n"
+          "6) 기본적으로 1000원이 주어지며, 모두 소진시 게임은 끝납니다\n"
+          "\n"
+          "미흡한 점이 있을 수 있으며 재미로 즐겨주시기 바랍니다\n\nr")
+
 # 플레이어 덱 총합 변환 코드
 def checkCard(define):
     if define == 'J':
@@ -276,10 +289,14 @@ def playerAndDealer():
 
 #플레이 시작
 playCount = 0
+print("※※ 게임에 대한 설명이 필요하신 분은 엔터대신 'rule'이라고 입력해주세요 ※※")
 while True:
     print("[현재 플레이한 횟수는", playCount, "회 입니다.]")
     print("<System> 엔터를 치면 게임을 시작합니다")
-    input()
+    start = str(input())
+    print(start)
+    if start == 'rule':
+        gameRule()
     playerAndDealer()
     playCount += 1
     # 매 게임마다 덱을 리셋
