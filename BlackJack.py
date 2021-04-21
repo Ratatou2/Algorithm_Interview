@@ -31,7 +31,7 @@ def gameRule():
           "5) 딜러와 같은 점수라면 무승부로 베팅한 금액을 다시 돌려받습니다\n"
           "6) 기본적으로 1000원이 주어지며, 모두 소진시 게임은 끝납니다\n"
           "\n"
-          "미흡한 점이 있을 수 있으며 재미로 즐겨주시기 바랍니다\n\nr")
+          "미흡한 점이 있을 수 있으며 재미로 즐겨주시기 바랍니다\n\n")
 
 # 플레이어 덱 총합 변환 코드
 def checkCard(define):
@@ -125,11 +125,9 @@ def playerAndDealer():
     while True:
         print("___________________________")
         print("<System> 더 뽑으시겠습니까?\n (1) 예 / (2) 아니오")
-
         while True:
             try:
                 ans = int(input())
-
                 if ans < 0:
                     print("1과 2 둘중 하나를 골라주세요")
                 else:
@@ -294,9 +292,11 @@ while True:
     print("[현재 플레이한 횟수는", playCount, "회 입니다.]")
     print("<System> 엔터를 치면 게임을 시작합니다")
     start = str(input())
-    print(start)
+
     if start == 'rule':
         gameRule()
+
+
     playerAndDealer()
     playCount += 1
     # 매 게임마다 덱을 리셋
