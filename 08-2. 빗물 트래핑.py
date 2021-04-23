@@ -1,6 +1,8 @@
 #해당 코드는 박상길 저자의 '파이썬 알고리즘 인터뷰'를 공부하며 적은 내용입니다
 # 08-1과 같은 문제인데 여기는 이제 stack으로 푸는 방법임
 
+# 어려워 추가 공부 필요
+
 def traping(land_heights:list):
     # 빈 스택 stack과 채워진 물을 count할 fill 생성
     stack = []
