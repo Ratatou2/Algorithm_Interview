@@ -1,5 +1,11 @@
 # 원형 데크, 연결 리스트로 구현
 
+class ListNode:
+    def __init__(self, val = 0, next=None):
+        self.val = val
+        self.next = next
+
+
 class MyCircularDeque:
     def __init__(self, k):
         self.head, self.tail = ListNode(None), ListNode(None)
