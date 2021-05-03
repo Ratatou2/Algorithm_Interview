@@ -15,13 +15,19 @@ def isPalindrome(head):
     rev = None
     slow = fast = head
 
+    # 밑의 while문은 fast와 fast.next가 둘다 존재 할 경우에만 반복문을 실행하겠다는 것
     while fast and fast.next:
         fast = fast.next.next
         rev, rev.next, slow = slow, rev, slow.next # 한줄로 처리해야 딱 끝낼 수 있음
+
+    # 위의 whlie문을 실행하고 나면 전체 갯수가 홀수인 경우를 위해서 아래의 if문을 넣어둠
+    # fast가 아직 None이 아니라면 한칸 더 이동해야 하기 때문에
     if fast:
         slow = slow.next
 
-
+    # rev값이 True이고(= 값이 존재하고), rev.val과 slow.val이 같은 경우
+    # 값이 일치하면 둘다 None까지 도달하게 되어있다.
+    # slow, rev = slow.next, rev.next : slow와 rev 모두 한칸씩 이동해서 또 다시 값을 비교
     while rev and rev.val == slow. val:
         slow, rev = slow.next, rev.next
 
