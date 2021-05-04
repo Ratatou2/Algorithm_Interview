@@ -17,25 +17,33 @@ head = [1,2,3,4,5]
 print(reverseList(head))
 
 '''
-실행순서_ 이게 정확히 들어 맞는지는 잘 모르겠다...
-
+실행순서(아마 다음과 같을 것으로 추측)
+임의의 연결리스트 [1-2-3-4-5]가 있다고 가정할 때
 실행 순서를 적어보자면
 
-node = 1, prev = None 으로 시작
-next = 2 / prev = 2
-return reverse(2,1)_재귀
+node = 1, prev = None
+next = 2, node.next = None
+return(2,1)
 
-next = 3 / prev = 3
-return reverse(3,2)_재귀
+node = 2, prev = 1
+next = 3, node.next = 1
+return(3,2)
 
-next = 4 / prev = 4
-return reverse(4,3)_재귀
+node = 3, prev = 2
+next = 4, node.next = 2
+return(4,3)
 
-next = 5 / prev = 4
-return reverse(5,4)_재귀
+node = 4, prev = 3
+next = 5, node.next = 3
+return(5,4)
 
-next = None / prev = None
-return prev 시작
+node = 5, prev = 4
+next = None, node.next = 4
+return(None,5)
+
+node = None, return prev
+prev : 5-4-3-2-1
 
 역순으로 정렬
+# node.next가 이전 요소랑 연결해주는 방식인듯
 '''
