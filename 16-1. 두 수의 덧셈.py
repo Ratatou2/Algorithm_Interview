@@ -1,8 +1,13 @@
 # 자료형 변환
 # 연결리스트를 문자열로 이어 붙인 다음에 숫자로 변환하고 이를 모두 계산후 다시 연결리스트로 변경하는 코드
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
 class solution:
     # 연결리스트 뒤집기
+    # 일단 역순으로 만든 다음에 각각을 더해주니까 뒤집기부터 시전
     def reverseList(self, head):
         node, prev = head, None
 
@@ -12,7 +17,7 @@ class solution:
 
         return prev
 
-    # 연결리스트를 list에 추가하는 코드
+    # 연결리스트를 리스트 list에 추가하는 코드
     def toList(self, node):
         list = []
         while node:
