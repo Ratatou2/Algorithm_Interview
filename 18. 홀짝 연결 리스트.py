@@ -1,3 +1,5 @@
+# 이상하게 이건 문제를 읽어봐도 뭔소린지 이해가 안됨..ㅠㅠ 바본가..
+
 
 def oddEventList(head):
     if head is None:
