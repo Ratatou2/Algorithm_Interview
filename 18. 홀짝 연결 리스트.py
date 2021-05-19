@@ -11,9 +11,12 @@ def oddEventList(head):
     even = head.next
     even_head = head.next
 
+    # whlie문의 첫줄 : 홀수 자릿수끼리, 짝수 자릿수끼리 연결하는 코드
+    # 그 다음 코드는 head와 head.next를 한자리씩 이동한다(코드 끝이 나올 때까지 계속 이어 나가는 셈)
     while even and even.next:
         odd.next, even.next = odd.next.next, even.next.next
         odd, even = odd.next, even.next
 
+    # 그러고 나면 이제 홀수 노드의 마지막을 짝수 헤드에 연결한다
     odd.next = even_head
     return head
